@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>YouChoose</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <img src="../icons/icon48.png" alt="" width="36" height="36" />
+      <div class="brand">
+        <h1>YouChoose</h1>
+        <p id="status">Active on YouTube</p>
+      </div>
+      <button id="more-settings" class="settings-button" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19.14 12.94c.04-.31.06-.62.06-.94s-.02-.63-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.48.48 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.31-.09.63-.09.94s.02.63.06.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.48.48 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z" />
+        </svg>
+        More settings
+      </button>
+      <label class="switch" title="Turn YouChoose on or off">
+        <input type="checkbox" data-key="enabled" />
+        <span></span>
+      </label>
+    </header>
+
+    <main>
+      <section>
+        <h2>Summarize</h2>
+        <div class="row static">
+          <span>Summarize with<small>The "Summarize this video" button below each video</small></span>
+          <span class="choice" role="radiogroup" aria-label="Summarize with">
+            <label><input type="radio" name="summarizeWith" data-key="summarizeWith" value="chatgpt" /><span>ChatGPT</span></label>
+            <label><input type="radio" name="summarizeWith" data-key="summarizeWith" value="claude" /><span>Claude</span></label>
+          </span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Blocklist</h2>
+        <form id="add-keyword" class="keyword" autocomplete="off">
+          <input id="keyword" type="text" placeholder="Keyword, e.g. spoiler" maxlength="100" spellcheck="false" aria-label="Keyword to block" />
+          <button type="submit">Add keyword to block</button>
+        </form>
+        <p id="keyword-status" class="keyword-status" role="status" hidden></p>
+        <label class="row">
+          <span>Use my blocklist<small id="blocklist-count">Block channels, words and videos</small></span>
+          <span class="switch"><input type="checkbox" data-key="useBlocklist" /><span></span></span>
+        </label>
+      </section>
+
+      <section>
+        <h2>Shorts</h2>
+        <label class="row">
+          <span>Hide Shorts<small>Feeds, search, sidebar and the Shorts tab</small></span>
+          <span class="switch"><input type="checkbox" data-key="hideShorts" /><span></span></span>
+        </label>
+        <label class="row">
+          <span>Open Shorts in the normal player<small>Get the regular player with seeking and speed controls</small></span>
+          <span class="switch"><input type="checkbox" data-key="redirectShorts" /><span></span></span>
+        </label>
+      </section>
+
+      <section>
+        <h2>Focus</h2>
+        <label class="row">
+          <span>Hide recommended videos<small>The sidebar next to the video</small></span>
+          <span class="switch"><input type="checkbox" data-key="hideRelated" /><span></span></span>
+        </label>
+        <label class="row">
+          <span>Hide comments</span>
+          <span class="switch"><input type="checkbox" data-key="hideComments" /><span></span></span>
+        </label>
+      </section>
+
+      <!-- Collapsed by default to keep the popup short; the header shows how many are on. -->
+      <details class="group">
+        <summary><h2>Blocking</h2><span class="group-state"></span></summary>
+        <label class="row">
+          <span>Hide Mixes<small>Auto-generated "Mix" playlists</small></span>
+          <span class="switch"><input type="checkbox" data-key="hideMixes" /><span></span></span>
+        </label>
+        <label class="row">
+          <span>Hide Movies</span>
+          <span class="switch"><input type="checkbox" data-key="hideMovies" /><span></span></span>
+        </label>
+        <label class="row">
+          <span>Hide Explore &amp; Trending<small>The Explore section and its pages</small></span>
+          <span class="switch"><input type="checkbox" data-key="hideExplore" /><span></span></span>
+        </label>
+        <label class="row">
+          <span>Hide "More from YouTube"<small>YouTube Music, YouTube Kids and other apps</small></span>
+          <span class="switch"><input type="checkbox" data-key="hideMoreFromYouTube" /><span></span></span>
+        </label>
+        <label class="row">
+          <span>Hide Report history</span>
+          <span class="switch"><input type="checkbox" data-key="hideReportHistory" /><span></span></span>
+        </label>
+        <label class="row">
+          <span>Hide footer links<small>About, Copyright, Terms, Privacy and more</small></span>
+          <span class="switch"><input type="checkbox" data-key="hideGuideFooter" /><span></span></span>
+        </label>
+      </details>
+
+      <details class="group">
+        <summary><h2>Dislikes</h2><span class="group-state"></span></summary>
+        <label class="row">
+          <span>Show dislike count<small>Next to the like button</small></span>
+          <span class="switch"><input type="checkbox" data-key="showDislikes" /><span></span></span>
+        </label>
+        <label class="row">
+          <span>Show like/dislike bar</span>
+          <span class="switch"><input type="checkbox" data-key="showRatioBar" /><span></span></span>
+        </label>
+      </details>
+    </main>
+
+    <script src="../shared/settings.js"></script>
+    <script src="../shared/matcher.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

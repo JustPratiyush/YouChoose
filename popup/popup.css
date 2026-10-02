@@ -1,0 +1,207 @@
+@import url("../shared/theme.css");
+
+body {
+  width: 352px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  flex: 1;
+}
+
+h1 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+#status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+main {
+  padding: 4px 8px 10px;
+  transition: opacity 0.15s;
+}
+
+body.off main {
+  opacity: 0.45;
+}
+
+h2 {
+  margin: 12px 8px 4px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.row:hover {
+  background: var(--surface);
+}
+
+.row.static {
+  cursor: default;
+}
+
+.row.static:hover {
+  background: none;
+}
+
+/* "More settings" in the header */
+.settings-button {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px 5px 7px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.settings-button svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.settings-button:hover {
+  background: var(--surface);
+}
+
+.settings-button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+/* "Add keyword to block" */
+.keyword {
+  display: flex;
+  gap: 6px;
+  padding: 4px 8px 6px;
+}
+
+.keyword input {
+  flex: 1;
+  min-width: 0;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+}
+
+.keyword input:focus {
+  outline: 2px solid var(--focus);
+  outline-offset: -1px;
+}
+
+.keyword button {
+  flex: none;
+  height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.keyword button:hover {
+  filter: brightness(1.1);
+}
+
+.keyword-status {
+  margin: 0 8px 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Collapsible groups (Blocking, Dislikes) */
+details.group {
+  margin-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+details.group summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 8px 6px;
+  border-radius: 8px;
+  list-style: none;
+  cursor: pointer;
+}
+
+details.group summary::-webkit-details-marker {
+  display: none;
+}
+
+details.group summary:hover {
+  background: var(--surface);
+}
+
+details.group summary h2 {
+  flex: 1;
+  margin: 0;
+}
+
+.group-state {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* Down arrow that flips when the group is open */
+details.group summary::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin: -3px 4px 0 0;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  transition: transform 0.15s;
+}
+
+details.group[open] summary::after {
+  margin-top: 3px;
+  transform: rotate(-135deg);
+}
+
+details.group summary:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}

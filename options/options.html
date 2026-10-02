@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>YouChoose settings</title>
+    <link rel="icon" href="../icons/icon32.png" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <img src="../icons/icon128.png" alt="" width="40" height="40" />
+        <div>
+          <h1>YouChoose</h1>
+          <p>Quick switches live in the toolbar popup.</p>
+        </div>
+      </div>
+      <nav class="tabs" aria-label="Settings sections">
+        <a href="#features">Features</a>
+        <a href="#blocklist">Blocklist</a>
+        <a href="#filters">Video filters</a>
+        <a href="#summarize">Summarize</a>
+        <a href="#history">Summary history</a>
+        <a href="#backup">Backup</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="features" class="panel">
+        <h2>Features</h2>
+        <p class="hint">Every switch from the toolbar popup, with what it does. Changes apply to open YouTube tabs right away.</p>
+
+        <div class="feature-group">
+          <h3>General</h3>
+          <label class="feature">
+            <span class="feature-text"><strong>YouChoose</strong><small>Turns every YouChoose feature on or off at once. When it’s off, YouTube looks and works exactly as normal.</small></span>
+            <span class="switch"><input type="checkbox" data-key="enabled" /><span></span></span>
+          </label>
+          <div class="feature">
+            <span class="feature-text"><strong>Summarize with</strong><small>Which chat the “Summarize this video” button opens. The video’s transcript is attached and a detailed summary prompt is filled in for you.</small></span>
+            <span class="choice" role="radiogroup" aria-label="Summarize with">
+              <label><input type="radio" name="summarizeWith-features" data-key="summarizeWith" value="chatgpt" /><span>ChatGPT</span></label>
+              <label><input type="radio" name="summarizeWith-features" data-key="summarizeWith" value="claude" /><span>Claude</span></label>
+            </span>
+          </div>
+        </div>
+        <div class="feature-group">
+          <h3>Blocklist</h3>
+          <label class="feature">
+            <span class="feature-text"><strong>Use my blocklist</strong><small>Hides videos, channels and comments that match your blocklist. Turn it off to pause blocking without losing your entries.</small></span>
+            <span class="switch"><input type="checkbox" data-key="useBlocklist" /><span></span></span>
+          </label>
+        </div>
+        <div class="feature-group">
+          <h3>Shorts</h3>
+          <label class="feature">
+            <span class="feature-text"><strong>Hide Shorts</strong><small>Removes Shorts shelves and Shorts videos from your home page, subscriptions, search and the sidebar, plus the Shorts tab in the menu.</small></span>
+            <span class="switch"><input type="checkbox" data-key="hideShorts" /><span></span></span>
+          </label>
+          <label class="feature">
+            <span class="feature-text"><strong>Open Shorts in the normal player</strong><small>Any Short you open plays in the regular video player instead, with seeking, playback speed and the normal page layout.</small></span>
+            <span class="switch"><input type="checkbox" data-key="redirectShorts" /><span></span></span>
+          </label>
+        </div>
+        <div class="feature-group">
+          <h3>Focus</h3>
+          <label class="feature">
+            <span class="feature-text"><strong>Hide recommended videos</strong><small>Hides the column of recommended videos next to the video you’re watching. Playlists and live chat stay visible.</small></span>
+            <span class="switch"><input type="checkbox" data-key="hideRelated" /><span></span></span>
+          </label>
+          <label class="feature">
+            <span class="feature-text"><strong>Hide comments</strong><small>Hides the comments section under videos.</small></span>
+            <span class="switch"><input type="checkbox" data-key="hideComments" /><span></span></span>
+          </label>
+        </div>
+        <div class="feature-group">
+          <h3>Blocking</h3>
+          <label class="feature">
+            <span class="feature-text"><strong>Hide Mixes</strong><small>Hides YouTube’s auto-generated “Mix” playlists from your feeds and recommendations.</small></span>
+            <span class="switch"><input type="checkbox" data-key="hideMixes" /><span></span></span>
+          </label>
+          <label class="feature">
+            <span class="feature-text"><strong>Hide Movies</strong><small>Hides the movies YouTube offers to buy or rent.</small></span>
+            <span class="switch"><input type="checkbox" data-key="hideMovies" /><span></span></span>
+          </label>
+          <label class="feature">
+            <span class="feature-text"><strong>Hide Explore &amp; Trending</strong><small>Hides the Explore section of the left menu, and takes you to the home page if you open Explore or Trending.</small></span>
+            <span class="switch"><input type="checkbox" data-key="hideExplore" /><span></span></span>
+          </label>
+          <label class="feature">
+            <span class="feature-text"><strong>Hide “More from YouTube”</strong><small>Hides the links to YouTube Music, YouTube Kids and other YouTube apps in the left menu.</small></span>
+            <span class="switch"><input type="checkbox" data-key="hideMoreFromYouTube" /><span></span></span>
+          </label>
+          <label class="feature">
+            <span class="feature-text"><strong>Hide Report history</strong><small>Hides the Report history link in the left menu.</small></span>
+            <span class="switch"><input type="checkbox" data-key="hideReportHistory" /><span></span></span>
+          </label>
+          <label class="feature">
+            <span class="feature-text"><strong>Hide footer links</strong><small>Hides the About, Press, Copyright, Terms, Privacy and other links at the bottom of the left menu.</small></span>
+            <span class="switch"><input type="checkbox" data-key="hideGuideFooter" /><span></span></span>
+          </label>
+        </div>
+        <div class="feature-group">
+          <h3>Dislikes</h3>
+          <label class="feature">
+            <span class="feature-text"><strong>Show dislike count</strong><small>Shows an estimated number of dislikes next to the dislike button, on videos and Shorts.</small></span>
+            <span class="switch"><input type="checkbox" data-key="showDislikes" /><span></span></span>
+          </label>
+          <label class="feature">
+            <span class="feature-text"><strong>Show like/dislike bar</strong><small>Adds a thin bar under the like and dislike buttons showing the share of likes at a glance.</small></span>
+            <span class="switch"><input type="checkbox" data-key="showRatioBar" /><span></span></span>
+          </label>
+        </div>
+      </section>
+
+      <section id="blocklist" class="panel">
+        <div class="section-head">
+          <h2>Blocklist</h2>
+          <label class="switch" title="Turn the blocklist on or off">
+            <input type="checkbox" data-key="useBlocklist" aria-label="Use my blocklist" />
+            <span></span>
+          </label>
+        </div>
+        <p class="hint">
+          One entry per line. Plain words match whole words, ignoring case. Use <code>/pattern/i</code> for a regular
+          expression, and start a line with <code>//</code> for a note. Changes save automatically.
+        </p>
+        <p class="hint paused-note">The blocklist is paused. Your entries are kept, but nothing is hidden until you turn it back on.</p>
+        <p class="hint tip">
+          <strong>Tip:</strong> on YouTube, open the <strong>⋮</strong> menu on any video or comment and choose
+          <em>Block this channel</em> or <em>Block this video</em>.
+        </p>
+        <div class="lists">
+          <label class="field">
+            <span>Channels</span>
+            <small>Name, @handle, ID or link. Also hides their comments.</small>
+            <textarea data-key="blockedChannels" rows="8" spellcheck="false" placeholder="@SomeChannel&#10;Some Channel Name&#10;https://www.youtube.com/channel/UC…"></textarea>
+          </label>
+          <label class="field">
+            <span>Words in video titles</span>
+            <small>Hides videos whose titles contain these words.</small>
+            <textarea data-key="blockedTitles" rows="8" spellcheck="false" placeholder="spoiler&#10;/reaction|prank/i"></textarea>
+          </label>
+          <label class="field">
+            <span>Videos</span>
+            <small>Video ID or link.</small>
+            <textarea data-key="blockedVideos" rows="8" spellcheck="false" placeholder="https://www.youtube.com/watch?v=…"></textarea>
+          </label>
+          <label class="field">
+            <span>Words in comments</span>
+            <small>Hides comments and chat messages with these words.</small>
+            <textarea data-key="blockedComments" rows="8" spellcheck="false" placeholder="first!&#10;/sub.?4.?sub/i"></textarea>
+          </label>
+        </div>
+        <p class="hint">
+          Opening a blocked video pauses it behind a notice. Opening a blocked channel's page takes you back to the
+          YouTube home page.
+        </p>
+      </section>
+
+      <section id="filters" class="panel">
+        <h2>Video filters</h2>
+        <p class="hint">Applied to feeds, search and recommendations. Not applied inside playlists or on your History page.</p>
+        <div class="filters">
+          <label class="inline">
+            Hide videos shorter than
+            <input type="number" data-key="minDuration" min="0" step="1" placeholder="off" />
+            minutes
+          </label>
+          <label class="inline">
+            Hide videos longer than
+            <input type="number" data-key="maxDuration" min="0" step="1" placeholder="off" />
+            minutes
+          </label>
+          <div class="inline">
+            <label class="switch"><input type="checkbox" data-key="hideWatched" id="hide-watched" /><span></span></label>
+            <label for="hide-watched">Hide videos I've watched past</label>
+            <input type="number" data-key="watchedPercent" min="1" max="100" step="1" aria-label="Watched percentage" />
+            %
+            <small>(needs you to be signed in to YouTube)</small>
+          </div>
+        </div>
+      </section>
+
+      <section id="summarize" class="panel">
+        <h2>Summarize videos</h2>
+        <p class="hint">
+          The <strong>Summarize this video</strong> button below each video opens a new chat with the video's full
+          transcript and the prompt below.
+        </p>
+        <div class="settings-list">
+          <div class="inline">
+            <span class="setting-name">Summarize with</span>
+            <label class="radio"><input type="radio" name="summarizeWith" data-key="summarizeWith" value="chatgpt" /> ChatGPT</label>
+            <label class="radio"><input type="radio" name="summarizeWith" data-key="summarizeWith" value="claude" /> Claude</label>
+          </div>
+          <div class="inline">
+            <span class="setting-name">Add the transcript</span>
+            <label class="radio"><input type="radio" name="summaryDelivery" data-key="summaryDelivery" value="file" /> as an attached .txt file (recommended)</label>
+            <label class="radio"><input type="radio" name="summaryDelivery" data-key="summaryDelivery" value="inline" /> pasted into the message</label>
+          </div>
+          <div class="inline">
+            <label class="switch"><input type="checkbox" data-key="summaryTimestamps" id="summary-timestamps" /><span></span></label>
+            <label for="summary-timestamps">Include timestamps, so the summary can cite <code>[12:34]</code></label>
+          </div>
+          <div class="inline">
+            <label class="switch"><input type="checkbox" data-key="summaryDescription" id="summary-description" /><span></span></label>
+            <label for="summary-description">Include the video description (often lists chapters and links)</label>
+          </div>
+          <div class="inline">
+            <label class="switch"><input type="checkbox" data-key="summaryAutoSend" id="summary-autosend" /><span></span></label>
+            <label for="summary-autosend">Send the message automatically (otherwise you review it and press Enter)</label>
+          </div>
+          <label class="inline">
+            Preferred caption language
+            <input type="text" data-key="summaryLang" maxlength="10" spellcheck="false" class="short" />
+            <small>e.g. <code>en</code>, <code>hi</code>, <code>es</code>. Falls back to the video's spoken language.</small>
+          </label>
+        </div>
+
+        <div class="section-head prompt-head">
+          <h3>Prompt</h3>
+          <button type="button" id="reset-prompt" class="small">Reset to default</button>
+        </div>
+        <textarea data-key="summaryPrompt" rows="18" spellcheck="false" aria-label="Summary prompt"></textarea>
+        <p class="hint placeholders">
+          Filled in for each video: <code>{{title}}</code> <code>{{channel}}</code> <code>{{url}}</code>
+          <code>{{duration}}</code> <code>{{language}}</code> (caption language) and <code>{{where}}</code> (where the
+          transcript is: the attached file, or the end of the message).
+        </p>
+      </section>
+
+      <section id="history" class="panel">
+        <div class="section-head">
+          <h2>Summary history</h2>
+          <button type="button" id="clear-history" class="small" hidden>Clear history</button>
+        </div>
+        <p class="hint">Videos you've summarized, newest first. The last 50 are kept on this computer.</p>
+        <p id="history-empty" class="empty">
+          Nothing here yet. Click <strong>Summarize this video</strong> below any YouTube video and it will show up here.
+        </p>
+        <ol id="history-list" class="history"></ol>
+      </section>
+
+      <section id="backup" class="panel">
+        <h2>Backup</h2>
+        <p class="hint">Save all YouChoose settings to a file, or load them on another computer.</p>
+        <div class="buttons">
+          <button type="button" id="export">Export settings</button>
+          <button type="button" id="import">Import settings</button>
+          <input type="file" id="import-file" accept="application/json,.json" hidden />
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span id="status" role="status">All changes saved</span>
+    </footer>
+
+    <script src="../shared/settings.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>
