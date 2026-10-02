@@ -25,6 +25,14 @@
     </header>
 
     <main>
+      <section class="quick-block">
+        <form id="add-keyword" class="keyword" autocomplete="off">
+          <input id="keyword" type="text" placeholder="Keyword, e.g. spoiler" maxlength="100" spellcheck="false" aria-label="Keyword to block" />
+          <button type="submit">Add keyword to block</button>
+        </form>
+        <p id="keyword-status" class="keyword-status" role="status" hidden></p>
+      </section>
+
       <section>
         <h2>Summarize</h2>
         <div class="row static">
@@ -38,11 +46,6 @@
 
       <section>
         <h2>Blocklist</h2>
-        <form id="add-keyword" class="keyword" autocomplete="off">
-          <input id="keyword" type="text" placeholder="Keyword, e.g. spoiler" maxlength="100" spellcheck="false" aria-label="Keyword to block" />
-          <button type="submit">Add keyword to block</button>
-        </form>
-        <p id="keyword-status" class="keyword-status" role="status" hidden></p>
         <label class="row">
           <span>Use my blocklist<small id="blocklist-count">Block channels, words and videos</small></span>
           <span class="switch"><input type="checkbox" data-key="useBlocklist" /><span></span></span>
