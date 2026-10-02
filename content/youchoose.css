@@ -1,0 +1,261 @@
+/* YouChoose — every hide rule is gated by an attribute on <html> that content/core.js sets
+   from the user's settings, so turning a switch off restores YouTube instantly. */
+
+/* Anything the blocklist matched. */
+[yc-hidden] {
+  display: none !important;
+}
+
+/* ---------- Shorts ---------- */
+html[yc-hide-shorts] :is(
+  ytd-reel-shelf-renderer,
+  ytd-rich-shelf-renderer[is-shorts],
+  ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+  grid-shelf-view-model:has(ytm-shorts-lockup-view-model),
+  ytd-rich-item-renderer:has(ytm-shorts-lockup-view-model),
+  ytm-shorts-lockup-view-model,
+  ytd-reel-item-renderer,
+  ytd-video-renderer:has(a[href^="/shorts/"]),
+  ytd-grid-video-renderer:has(a[href^="/shorts/"]),
+  ytd-compact-video-renderer:has(a[href^="/shorts/"]),
+  yt-lockup-view-model:has(a[href^="/shorts/"]),
+  ytd-guide-entry-renderer:has(a[href^="/shorts"], a[title="Shorts"]),
+  ytd-mini-guide-entry-renderer:has(a[href^="/shorts"], a[title="Shorts"]),
+  yt-tab-shape[tab-title="Shorts"]
+) {
+  display: none !important;
+}
+
+/* ---------- Focus ---------- */
+html[yc-hide-related] ytd-watch-flexy #related {
+  display: none !important;
+}
+
+html[yc-hide-comments] :is(
+  ytd-comments#comments,
+  ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-comments-section"]
+) {
+  display: none !important;
+}
+
+/* ---------- Blocking categories ---------- */
+html[yc-hide-mixes] :is(ytd-radio-renderer, ytd-compact-radio-renderer, ytd-rich-item-renderer:has(ytd-radio-renderer)) {
+  display: none !important;
+}
+
+html[yc-hide-movies] :is(
+  ytd-movie-renderer,
+  ytd-compact-movie-renderer,
+  ytd-grid-movie-renderer,
+  ytd-rich-item-renderer:has(ytd-movie-renderer)
+) {
+  display: none !important;
+}
+
+/* The left menu's Explore section, plus any stray Trending/Explore entries. */
+html[yc-hide-explore] :is(
+  ytd-guide-section-renderer:has(a[href^="/feed/trending"], a[href^="/feed/explore"], a[href^="/gaming"], a[href^="/feed/storefront"], a[href^="/podcasts"]),
+  ytd-guide-entry-renderer:has(a[href^="/feed/trending"], a[href^="/feed/explore"]),
+  ytd-mini-guide-entry-renderer:has(a[href^="/feed/trending"], a[href^="/feed/explore"])
+) {
+  display: none !important;
+}
+
+/* The left menu's "More from YouTube" section (YouTube Music, Kids, Premium…). Studio links to your
+   own channel live in the "You" section, so those are left alone. */
+html[yc-hide-more-from-youtube] ytd-guide-section-renderer:has(
+  a[href*="music.youtube.com"],
+  a[href*="youtubekids.com"],
+  a[href*="studio.youtube.com"]:not([href*="/channel/"]),
+  a[href^="/premium"]
+) {
+  display: none !important;
+}
+
+/* "Report history" — the whole section when it's the only entry, otherwise just the entry. */
+html[yc-hide-report-history] :is(
+  ytd-guide-entry-renderer:has(a[href^="/reporthistory"]),
+  ytd-guide-section-renderer:has(ytd-guide-entry-renderer:only-of-type a[href^="/reporthistory"])
+) {
+  display: none !important;
+}
+
+/* About, Press, Copyright, Terms, Privacy… at the bottom of the left menu. */
+html[yc-hide-guide-footer] ytd-guide-renderer #footer {
+  display: none !important;
+}
+
+/* ---------- Dislikes ----------
+   Colours come from currentColor (YouTube's own text colour), so light and dark themes both work. */
+:is(segmented-like-dislike-button-view-model, ytd-segmented-like-dislike-button-renderer):has(> .yc-ratio) {
+  position: relative;
+}
+
+.yc-ratio {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -4px;
+  height: 3px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: color-mix(in srgb, currentColor 30%, transparent);
+}
+
+.yc-ratio > div {
+  height: 100%;
+  background: currentColor;
+}
+
+.yc-shorts-dislike {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+  font: 500 14px/20px Roboto, Arial, sans-serif;
+}
+
+.yc-shorts-dislike-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+.yc-shorts-dislike svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* ---------- "Block this channel / video" at the top of YouTube's ⋮ menus (see menu.js) ---------- */
+.yc-menu {
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+}
+
+.yc-menu-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Older menus (search results, watch page, comments) get our own item, styled like YouTube's. */
+ytd-menu-popup-renderer > .yc-menu {
+  margin-bottom: 0; /* YouTube's list below already has 8px of padding */
+  padding-top: 8px;
+}
+
+.yc-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 36px;
+  padding: 0 36px 0 16px;
+  font: 400 14px/20px Roboto, Arial, sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.yc-menu-item:hover,
+.yc-menu-item:focus-visible {
+  outline: none;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+/* ---------- "Summarize this video" button (see summarize.js) ---------- */
+/* It takes the place of YouTube's "Ask" button, which is hidden while YouChoose is on. */
+html[yc-on] ytd-watch-metadata :is(yt-button-view-model, ytd-button-renderer):has(.you-chat-entrypoint-button) {
+  display: none !important;
+}
+
+.yc-summarize {
+  display: flex;
+  flex: none;
+  margin-left: 8px;
+}
+
+.yc-summarize-logo {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.yc-summarize button[disabled] {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+/* Used only if YouTube's Share button can't be copied. */
+.yc-summarize-fallback {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px 0 12px;
+  border: 0;
+  border-radius: 18px;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  color: inherit;
+  font: 500 14px/20px Roboto, Arial, sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.yc-summarize-fallback:hover {
+  background: color-mix(in srgb, currentColor 20%, transparent);
+}
+
+/* ---------- Blocked video ---------- */
+.yc-blocked {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #0f0f0f;
+  color: #fff;
+  font: 400 16px/1.4 Roboto, Arial, sans-serif;
+  text-align: center;
+}
+
+.yc-blocked strong {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.yc-blocked span {
+  color: #aaa;
+}
+
+/* ---------- Toast after a right-click block ---------- */
+.yc-toast {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 10000;
+  max-width: min(480px, calc(100vw - 48px));
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #212121;
+  color: #fff;
+  font: 400 14px/20px Roboto, Arial, sans-serif;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.yc-toast-visible {
+  opacity: 1;
+  transform: none;
+}
