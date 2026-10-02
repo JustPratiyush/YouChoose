@@ -96,8 +96,36 @@
     },
   ];
 
-  /** Snapshots the composer; the returned check reports whether an attachment card has appeared since. */
-  function attachmentProbe(editor, label) {
+  /**
+   * Resolves once the composer has gone `quietMs` without changing. Right after loading, ChatGPT is
+   * still adding its own buttons and silently ignores files handed to it, so wait for it to settle.
+   */
+  function composerSettled(editor, quietMs = 800, maxMs = 8000) {
+    return new Promise((resolve) => {
+      let quietTimer = null;
+      let capTimer = null;
+      const done = () => {
+        observer.disconnect();
+        clearTimeout(quietTimer);
+        clearTimeout(capTimer);
+        resolve();
+      };
+      const observer = new MutationObserver(() => {
+        clearTimeout(quietTimer);
+        quietTimer = setTimeout(done, quietMs);
+      });
+      observer.observe(composerOf(editor), { childList: true, subtree: true, attributes: true });
+      quietTimer = setTimeout(done, quietMs);
+      capTimer = setTimeout(done, maxMs);
+    });
+  }
+
+  /**
+   * Snapshots the composer; the returned check reports whether an attachment card has appeared since.
+   * Files are confirmed by their name only (both sites show it): a plain element count can be fooled
+   * by the page adding its own controls.
+   */
+  function attachmentProbe(editor, label, { countNodes = true } = {}) {
     const stem = label.replace(/\.txt$/i, '').trim().slice(0, 18);
     const measure = () => {
       const composer = composerOf(editor);
@@ -114,13 +142,13 @@
     const before = measure();
     return () => {
       const now = measure();
-      return now.mentions > before.mentions || now.nodes >= before.nodes + 4;
+      return now.mentions > before.mentions || (countNodes && now.nodes >= before.nodes + 4);
     };
   }
 
   async function attachFile(editor, file) {
     for (const method of ATTACH_METHODS) {
-      const appeared = attachmentProbe(editor, file.name);
+      const appeared = attachmentProbe(editor, file.name, { countNodes: false });
       const dataTransfer = new DataTransfer();
       dataTransfer.items.add(file);
       try {
@@ -237,8 +265,10 @@
 
   async function insert({ prompt, fallbackPrompt, file, inlineTranscript, autoSend, title }) {
     showToast(`Adding “${title}” to ${site.name}…`, 'progress');
-    const editor = await waitFor(findEditor, 20_000);
+    let editor = await waitFor(findEditor, 20_000);
     if (!editor) throw new Error(`Couldn't find ${site.name}'s message box. Open a chat and try again.`);
+    await composerSettled(editor);
+    editor = findEditor() ?? editor; // in case the page swapped it while settling
 
     let attached = false;
     let transcriptText = inlineTranscript;
