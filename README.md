@@ -71,6 +71,8 @@ To update, pull the latest changes, click the reload icon on the YouChoose card,
 - Dislike counts are looked up by video ID only. Your own likes and dislikes are never sent anywhere.
 - Summarizing fetches the captions from YouTube and puts them into the ChatGPT or Claude tab it opens. Nothing is sent until you press Enter, unless you turn on automatic sending.
 
+The full details are in the [privacy policy](PRIVACY.md).
+
 ## How it's built
 
 Plain JavaScript, Manifest V3, no build step and no dependencies.
