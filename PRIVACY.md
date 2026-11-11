@@ -1,6 +1,6 @@
 # YouChoose privacy policy
 
-_Last updated: October 8, 2026_
+_Last updated: November 8, 2026_
 
 YouChoose is a browser extension that changes how YouTube looks and works for you. It has no account, no server of its own, no analytics and no ads. The developer never receives any of your data.
 
@@ -21,6 +21,7 @@ YouChoose only sends data where a feature needs it:
 | When | What is sent | Sent to | Why |
 | --- | --- | --- | --- |
 | You open a video or Short while "Show dislike count" is on | The video's ID, nothing else | returnyoutubedislikeapi.com, a public service that estimates dislike counts | To show the dislike count and the like/dislike bar. Turn "Show dislike count" off and nothing is sent. |
+| You browse YouTube while "Use video frame thumbnails" is on | Thumbnail requests containing the displayed videos' IDs, plus standard browser request information | YouTube's image CDN (i.ytimg.com) | To display an automatic video still instead of creator artwork. This feature is off by default. |
 | You click "Summarize this video" | The video's ID | YouTube (www.youtube.com) | To download the video's captions. |
 | You click "Summarize this video" | The transcript, title, channel and the prompt you can edit in settings | ChatGPT (chatgpt.com) or Claude (claude.ai), whichever you picked, in a new tab in your own account | To ask it for a summary. It's typed into the message box and only sent when you press Enter, unless you turn on "Send the message automatically" in settings. |
 

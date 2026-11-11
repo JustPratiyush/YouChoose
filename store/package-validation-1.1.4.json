@@ -1,0 +1,19 @@
+{
+  "version": "1.1.4",
+  "name": "YouChoose - A Better YouTube, Remove Distractions",
+  "runtime_files": 28,
+  "size_bytes": 55813,
+  "sha256": "c1f269416fe979728a136b84804e02e1e4015ba7d8a390a6ce1b86b373683404",
+  "checks": [
+    "ZIP integrity",
+    "All packaged JavaScript syntax",
+    "Manifest resource references",
+    "PNG icon dimensions",
+    "Version increase over 1.0.0",
+    "Permissions unchanged from 1.0.0",
+    "Runtime files and licenses only",
+    "Packaged scripts match current source"
+  ],
+  "package": "store/youchoose-1.1.4.zip",
+  "baseline_package_version": "1.0.0"
+}

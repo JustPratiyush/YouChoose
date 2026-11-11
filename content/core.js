@@ -15,7 +15,7 @@ const YC = {
 
 // Settings that are pure CSS (see youchoose.css) become attributes on <html>.
 const CSS_SWITCHES = {
-  enabled: 'yc-on', // e.g. hides YouTube's "Ask" button, replaced by "Summarize this video"
+  enabled: 'yc-on',
   hideShorts: 'yc-hide-shorts',
   hideRelated: 'yc-hide-related',
   hideComments: 'yc-hide-comments',
