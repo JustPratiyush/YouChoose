@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/license-MIT-2a2a2e?style=flat-square" alt="MIT license" />
 </p>
 
-# YouChoose
+# YouChoose - A Better YouTube, Remove Distractions
 
 **YouTube, your way.** YouChoose is one small browser extension that blocks Shorts, shows dislikes, hides distractions, filters out channels and videos you don't want, and summarizes any video in ChatGPT or Claude with one click.
 
@@ -19,16 +19,16 @@ No account, no server, no tracking. Plain JavaScript you can read in an afternoo
 
 ## Summarize any video in one click
 
-<img src="docs/images/summarize.png" alt="The Summarize this video button opens ChatGPT or Claude with the transcript attached" width="100%" />
+<img src="docs/images/summarize.png" alt="The Summarize this video button on a real YouTube watch page, next to the Summarize settings and the editable prompt" width="100%" />
 
-- A **Summarize this video** button sits below every video, in place of YouTube's own "Ask" button.
+- A **Summarize this video** button sits at the start of YouTube's native action group, on the same row as like/dislike and Share. YouTube's Ask/Gemini button remains separate. The extension preserves YouTube's own action-container sizing and overflow.
 - One click fetches the video's full transcript and opens a new **ChatGPT** or **Claude** chat (your choice, at the top of the popup).
 - The transcript is attached as a `.txt` file with timestamps, and a detailed summary prompt is filled in: TL;DR, section-by-section breakdown, key learnings, facts, actionable advice and quotes. Review it and press Enter.
 - The prompt is fully editable, and every video you've summarized is listed under **Summary history** on the settings page.
 
 ## Block it right from YouTube's menu
 
-<img src="docs/images/blocking.png" alt="Block this channel and Block this video at the top of YouTube's menu" width="100%" />
+<img src="docs/images/blocking.png" alt="Block this channel and Block this video at the top of YouTube's menu, with the keyword box in the popup and the Blocklist settings tab" width="100%" />
 
 - **Block this channel** and **Block this video** appear at the top of YouTube's own ⋮ menu on every video and comment. They're in the right-click menu too, under **YouChoose**.
 - Type a word into **Add keyword to block** in the popup to hide every video with it in the title.
@@ -37,12 +37,20 @@ No account, no server, no tracking. Plain JavaScript you can read in an afternoo
 
 ## A calmer YouTube
 
-<img src="docs/images/before-after.png" alt="YouTube before and after YouChoose: no Shorts shelf, no Mixes, a shorter side menu" width="100%" />
+<img src="docs/images/before-after.png" alt="The same YouTube search before and after YouChoose: no Shorts shelf, and a side menu without Shorts, Explore and More from YouTube" width="100%" />
 
 - **Shorts:** hide them from feeds, search, the sidebar and the menu, and open any Short in the normal player.
 - **Focus:** hide the recommended-videos sidebar and the comments.
 - **Clean up:** hide Mixes, Movies, the Explore section, "More from YouTube", Report history and the footer links in the side menu.
 - **Video filters:** hide videos that are too short, too long, or already watched.
+
+## Video frame thumbnails
+
+Turn on **Use video frame thumbnails** in the popup or the settings page to replace creator artwork with YouTube's middle automatic still (50%, approximate). It applies to thumbnails in feeds, search, channel pages and the sidebar, including new cards loaded as you scroll. YouTube's available frame resolutions are tried in order; if none works, the original artwork stays visible.
+
+This feature starts off. Turning it off, or pausing YouChoose, restores the original thumbnails immediately. No extra permissions are needed.
+
+The displayed image changes without rewriting YouTube's thumbnail sources or adding a clickable overlay. Video links and hover previews continue to work.
 
 ## Every switch, one click away
 
@@ -55,7 +63,7 @@ No account, no server, no tracking. Plain JavaScript you can read in an afternoo
 
 ## Install
 
-YouChoose isn't in a web store yet, so you load it straight from this folder:
+YouChoose is available on the [Chrome Web Store](https://chromewebstore.google.com/detail/cfcegcgfmmgihngficddaoglpfopjnka). To test this version locally:
 
 1. Download this repository (**Code → Download ZIP**) and unzip it, or `git clone` it.
 2. Open `chrome://extensions` (or `edge://extensions`, `brave://extensions`).
@@ -64,6 +72,8 @@ YouChoose isn't in a web store yet, so you load it straight from this folder:
 5. Pin YouChoose from the puzzle-piece menu so its popup is one click away.
 
 To update, pull the latest changes, click the reload icon on the YouChoose card, and refresh your YouTube tabs.
+
+When testing an unpacked update, keep the older Web Store copy of YouChoose disabled. Reload YouTube after changing which copy is enabled, so the old scripts and styles are cleared. A tab already frozen by an older version may need to be closed and reopened before the update can run.
 
 ## Privacy
 
@@ -87,6 +97,7 @@ Plain JavaScript, Manifest V3, no build step and no dependencies.
 | `content/blocklist.js` | Hides matching videos, comments and chat messages, and blocks watch and channel pages. |
 | `content/menu.js` | Adds **Block this channel** / **Block this video** to the top of YouTube's ⋮ menus. |
 | `content/dislikes.js` | Fetches dislike counts and adds them to the page. |
+| `content/thumbnails.js` | Replaces creator artwork with YouTube's middle video still and restores it when disabled. |
 | `content/summarize.js` | The **Summarize this video** button under each video. |
 | `summarize/transcript.js` | Fetches a video's captions through YouTube's app API, or a muted background YouTube tab if that's refused. |
 | `summarize/format.js` | Builds the transcript file (paragraphs with `[m:ss]` timestamps) and fills in the prompt. |
@@ -94,7 +105,9 @@ Plain JavaScript, Manifest V3, no build step and no dependencies.
 | `background.js` | The right-click menu, the "OFF" badge, and the summarize job (which also records the summary history). |
 | `popup/` | The toolbar popup. |
 | `options/` | The settings page. |
-| `docs/images/` | The images in this README. |
+| `docs/images/` | The images in this README. The Summarize, blocking and before/after images are real captures of YouTube with the extension running. |
+| `tests/` | Browser regression checks: `node tests/browser-regressions.cjs` (needs Playwright). |
+| `store/` | Chrome Web Store screenshots, release notes and `package.sh`, which builds the upload ZIP. |
 
 ## License
 

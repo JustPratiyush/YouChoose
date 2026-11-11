@@ -133,6 +133,8 @@ html[yc-hide-guide-footer] ytd-guide-renderer #footer {
 
 /* ---------- "Block this channel / video" at the top of YouTube's ⋮ menus (see menu.js) ---------- */
 .yc-menu {
+  /* Older menus set no text colour on the popup itself, so dark theme would fall back to black. */
+  color: var(--yt-sys-color-baseline--text-primary, var(--yt-spec-text-primary, inherit));
   margin-bottom: 4px;
   padding-bottom: 4px;
   border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
@@ -169,15 +171,11 @@ ytd-menu-popup-renderer > .yc-menu {
 }
 
 /* ---------- "Summarize this video" button (see summarize.js) ---------- */
-/* It takes the place of YouTube's "Ask" button, which is hidden while YouChoose is on. */
-html[yc-on] ytd-watch-metadata :is(yt-button-view-model, ytd-button-renderer):has(.you-chat-entrypoint-button) {
-  display: none !important;
-}
-
-.yc-summarize {
-  display: flex;
+.yc-summary-action {
+  display: inline-flex;
+  align-items: center;
   flex: none;
-  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .yc-summarize-logo {
@@ -186,13 +184,12 @@ html[yc-on] ytd-watch-metadata :is(yt-button-view-model, ytd-button-renderer):ha
   height: 24px;
 }
 
-.yc-summarize button[disabled] {
+.yc-summary-action button[disabled] {
   cursor: progress;
   opacity: 0.7;
 }
 
-/* Used only if YouTube's Share button can't be copied. */
-.yc-summarize-fallback {
+.yc-summary-action button {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -207,8 +204,13 @@ html[yc-on] ytd-watch-metadata :is(yt-button-view-model, ytd-button-renderer):ha
   cursor: pointer;
 }
 
-.yc-summarize-fallback:hover {
+.yc-summary-action button:hover {
   background: color-mix(in srgb, currentColor 20%, transparent);
+}
+
+.yc-summary-action button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 /* ---------- Blocked video ---------- */

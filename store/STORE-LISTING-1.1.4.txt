@@ -1,0 +1,26 @@
+YouChoose - A Better YouTube, Remove Distractions
+
+Make YouTube work the way you want. Hide Shorts and distractions, filter channels and videos, see estimated dislikes, choose video frame thumbnails, and summarize videos in ChatGPT or Claude.
+
+SUMMARIZE VIDEOS
+Use the “Summarize this video” button beside the native video controls to open ChatGPT or Claude with the video's transcript and a detailed summary prompt. YouTube's own Ask/Gemini button stays separate wherever YouTube provides it. Choose your preferred AI service and customize the prompt in settings. Captions must be available for the video. Review and send the prepared message yourself, or enable automatic sending in settings.
+
+VIDEO FRAME THUMBNAILS
+Prefer a still from the video to creator artwork? Enable “Use video frame thumbnails” to display YouTube's middle automatic still, approximately 50% through the video. Works in feeds, search, channel pages and recommendations. If a still is unavailable, the original thumbnail is retained. This feature is off by default, and turning it off restores the original artwork.
+
+HIDE SHORTS AND DISTRACTIONS
+Hide Shorts from feeds, search, the sidebar and navigation. Open Shorts in the regular video player. Hide recommended videos, comments, Mixes, Movies, Explore, and other menu sections you don't use.
+
+BLOCK CHANNELS, KEYWORDS AND VIDEOS
+Block a channel or video from YouTube's menus or your browser's right-click menu. Add title keywords from the popup. Manage channel, title, video and comment filters in settings, with regular expressions available for advanced matching. Pause your blocklist without deleting it.
+
+DISLIKES AND VIDEO FILTERS
+See estimated dislike counts from Return YouTube Dislike and a like/dislike ratio bar. Filter videos by duration or how much you've already watched.
+
+YOUR SETTINGS, YOUR CHOICE
+Use the toolbar popup for quick changes, or open More settings for detailed controls, summary history, and settings backup. Turn YouChoose off with one switch.
+
+PRIVACY
+YouChoose has no separate account, analytics or tracking server. Settings, blocklists and summary history stay in local browser storage. Dislike lookups use video IDs. Optional frame thumbnails load from YouTube's image CDN. Summarizing retrieves captions from YouTube and prepares them in the ChatGPT or Claude tab you choose. See the privacy policy for details.
+
+YouChoose is an independent extension and is not affiliated with or endorsed by YouTube, Google, OpenAI or Anthropic.

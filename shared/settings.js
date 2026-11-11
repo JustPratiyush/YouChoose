@@ -42,6 +42,9 @@ const YC_DEFAULTS = {
   hideRelated: false,
   hideComments: false,
 
+  // Use YouTube's middle video still instead of creator-uploaded artwork (opt in).
+  useVideoThumbnails: false,
+
   // Dislikes
   showDislikes: true,
   showRatioBar: true,

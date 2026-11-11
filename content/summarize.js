@@ -1,37 +1,19 @@
-// "Summarize this video": a button in the row under the video (after Share, where YouTube's
-// own "Ask" button sits; that one is hidden by youchoose.css). The background worker fetches the
+// "Summarize this video": an independent button inside YouTube's action group.
+// Never clone or replace the native Ask/Gemini button. The worker fetches the
 // transcript and opens a new ChatGPT/Claude chat with it.
 
 const SUMMARIZE_LABEL = 'Summarize this video';
 const CHAT_NAMES = { chatgpt: 'ChatGPT', claude: 'Claude' };
 
-function buildSummarizeButton(row) {
+function buildSummarizeButton() {
   const wrapper = document.createElement('div');
-  wrapper.className = 'yc-summarize';
-
-  // Copy the Share button's markup (plain elements) so ours matches YouTube's own buttons.
-  const share = row.querySelector(':scope > #top-level-buttons-computed > yt-button-view-model button');
-  const button = share?.querySelector('[class*="ButtonTextContent"]') ? share.cloneNode(true) : null;
-  let label;
-  if (button) {
-    button.removeAttribute('aria-pressed');
-    label = button.querySelector('[class*="ButtonTextContent"]');
-    // YouTube loads its icons a moment after the button appears, so fill the icon slot ourselves
-    // rather than swapping out an icon that may not be there yet.
-    const iconSlot = button.querySelector('[class*="ButtonShapeNextIcon"], [class*="button-shape-next__icon"]');
-    if (iconSlot) iconSlot.replaceChildren(logoImage());
-    else button.prepend(logoImage());
-    wrapper.append(button);
-  } else {
-    const fallback = document.createElement('button');
-    fallback.className = 'yc-summarize-fallback';
-    label = document.createElement('span');
-    fallback.append(logoImage(), label);
-    wrapper.append(fallback);
-  }
+  wrapper.className = 'yc-summary-action';
+  const target = document.createElement('button');
+  target.type = 'button';
+  const label = document.createElement('span');
   label.textContent = SUMMARIZE_LABEL;
-
-  const target = wrapper.querySelector('button');
+  target.append(logoImage(), label);
+  wrapper.append(target);
   target.addEventListener('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -68,21 +50,22 @@ async function summarizeCurrentVideo(button, label) {
 function scanSummarize() {
   if (!YC.isTopFrame) return;
   const show = YC.on && location.pathname === '/watch';
-  const row = document.querySelector('ytd-watch-metadata ytd-menu-renderer');
-  let wrapper = document.querySelector('.yc-summarize');
-  if (!show || !row) {
+  const metadata = document.querySelector('ytd-watch-metadata');
+  const host = metadata?.querySelector('ytd-menu-renderer #top-level-buttons-computed');
+  let wrapper = document.querySelector('.yc-summary-action');
+  if (!show || !host) {
     wrapper?.remove();
     return;
   }
-  if (wrapper?.parentElement !== row) {
-    wrapper?.remove();
-    wrapper = buildSummarizeButton(row);
-    const after = row.querySelector(':scope > #top-level-buttons-computed');
-    if (after) after.after(wrapper);
-    else row.prepend(wrapper);
+  // A sibling of the menu falls outside YouTube's measured width and can be
+  // clipped by #actions-inner. Join the existing flex group instead, without
+  // changing the menu's width, overflow, height or any native button.
+  if (wrapper?.parentElement !== host) {
+    wrapper ??= buildSummarizeButton();
+    host.prepend(wrapper);
   }
   const button = wrapper.querySelector('button');
-  const title = `Summarize in ${CHAT_NAMES[YC.settings.summarizeWith] || 'ChatGPT'}`;
+  const title = `Summarize in ${CHAT_NAMES[YC.settings.summarizeWith] || 'ChatGPT'} with YouChoose`;
   if (button.title !== title) {
     button.title = title;
     button.setAttribute('aria-label', title);
